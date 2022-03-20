@@ -1,6 +1,6 @@
 # UnityShader入门精要
 
-## 1杂七杂八的
+## 1.杂七杂八的
 
 ### 1.1OpenGL/DirectX
 
@@ -102,7 +102,7 @@ GPU流水线=几何阶段+光栅化阶段
 
 
 
-## Unity Shader基础
+## 3.Unity Shader基础
 
 ### 3.1概述
 
@@ -161,7 +161,7 @@ Material需要结合Mesh或者 Paricles System组件来工作
 
 
 
-## 4数学基础
+## 4.数学基础
 
 ### 4.2坐标系
 
@@ -240,9 +240,80 @@ A(m,1) * B(1,n) =C(m,n)
 
 
 
+## 5.开始学习ShaderLAB
+
+```
+Shader "Custom/5-2"
+{
+    Properties
+    {
+        _Color("Color Tint",Color)=(1,1,1,1)
+    }
+    SubShader
+    {
+        Pass
+       {
+            CGPROGRAM
+            //顶点
+            #pragma vertex vert
+            //片元
+            #pragma fragment frag
+            //
+            uniform fixed4 _Color;
+            //
+            struct a2v{
+                float4 vertex: POSITION;
+                float3 normal: NORMAL;
+                float4 texcoord: TEXCOORD0;
+            };
+
+            struct v2f{
+                float4 pos: SV_POSITION;
+                fixed3 color: COLOR0;
+                };
+            v2f vert(a2v v)
+            {
+                v2f o;
+                o.pos=UnityObjectToClipPos(v.vertex);
+                o.color=v.normal *0.5 +fixed3(0.5,0.5,0.5);
+                return o;
+            }
+            //
+            fixed4 frag(v2f i):SV_Target{
+                fixed3 c=i.color;
+                c*=_Color.rgb;
+                return fixed4(c,1);
+            }
+            ENDCG
+
+        }
+    }
+    FallBack "Diffuse"
+}
+
+```
 
 
 
+
+
+### CG/HLSL语义
+
+
+
+## 6.基础光照
+
+宏观上渲染包含了两部分：像素的可见性，像素的光照计算
+
+ 通过 辐照度 量化光
+
+辐照度 = d / cos （setae）
+
+
+
+折射 ， 透射 ， 散射  ——> 高光反射，漫反射
+
+标准光照模型 BRDF
 
 
 
