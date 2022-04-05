@@ -1,10 +1,86 @@
+# C#
 
 
 
+# Component
 
-# CSharp
+## 动画系统
+
+### Animation Clip
+
+对物体变化情况的一种展示
 
 
+
+### Animator Controller
+
+跟踪当前动画的播放状态，并可以根据设置切换状态。
+
+### Avatar
+
+为了复用Humanoid动画
+
+### Animator Component
+
+- Animator Controller
+
+
+
+- avatar
+
+
+
+- ApplyRootMotion
+
+
+
+- updateMode
+
+Normal  与帧同步 update
+
+Animate physics 与物理帧同步
+
+Unscaled Time  与帧同步，忽略时间标尺
+
+- CullingMode
+
+剔除模式
+
+Always Animate
+
+不管相机，该怎么计算就怎么计算
+
+Cull Update Transform
+
+只计算状态，会剔除IK之类的
+
+Cull Completely
+
+完全停止动画，等到被看到
+
+### Animator
+
+动画状态机
+
+控制多个动画文件播放和切换的工具
+
+- 动画状态
+
+可以分三类
+
+​	单独的动画状态
+
+​	混合树
+
+​	另一个状态机
+
+- Layers
+
+
+
+- Parameters
+
+  
 
 # Plugin
 
